@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SED.Models.Detalle_Pregunta>
+
+@{
+    ViewBag.Title = "Detalle Pregunta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle Pregunta</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pregunta.nombre_pregunta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pregunta.nombre_pregunta)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Borrar", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

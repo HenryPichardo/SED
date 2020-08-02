@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SED.Models.Cuestionario>
+
+@{
+    ViewBag.Title = "Cuestionarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cuestionarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad_categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periodo.periodo1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Cuestionario.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad_categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Periodo.periodo1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Cuestionario.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_cuestionario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_cuestionario }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id_cuestionario })
+        </td>
+    </tr>
+}
+
+</table>

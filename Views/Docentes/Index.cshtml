@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SED.Models.Docentes>
+
+@{
+    ViewBag.Title = "Docentes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Docentes</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo_universitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Escuela)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Periodo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo_universitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Escuela.nombre)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Periodo.nombre_periodo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_docente }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_docente }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id_docente })
+        </td>
+    </tr>
+}
+
+</table>

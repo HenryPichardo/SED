@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SED.Models.Tipo_Evaluador>
+
+@{
+    ViewBag.Title = "Tipo de Evaluador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tipo de Evaluador</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_registro)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_tipo_evaluador }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_tipo_evaluador }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id_tipo_evaluador })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87bbe86fa6f348dd9b0c23a0b3113bd4" Name="Diagram1">
+        <EntityTypeShape EntityType="SEDModel.Alumnos" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Asignatura" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Asignatura_Alumno" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Asignatura_Docente" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Carrera" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Categoria_Pregunta" Width="1.5" PointX="10.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Cuestionario" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Detalle_Evaluacion" Width="1.5" PointX="15.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Directores_Escuelas" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Docente_Evaluacion" Width="1.5" PointX="10.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Docentes" Width="1.5" PointX="8" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Escuela" Width="1.5" PointX="0.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Evaluacion" Width="1.5" PointX="8" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Periodo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Pregunta" Width="1.5" PointX="13" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Preguntas_Cuestionario" Width="1.5" PointX="15.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Respuestas" Width="1.5" PointX="2.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Secion" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Tipo_Cuestionario" Width="1.5" PointX="5.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Tipo_Evaluador" Width="1.5" PointX="5.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Tipo_Pregunta" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEDModel.Detalle_Pregunta" Width="1.5" PointX="15.25" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="SEDModel.FK_Alumnos_Carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Alumnos_Tipo_Evaluador" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Asignatura_Alumno_Alumnos" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_secion_Alumnos" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Asignatura_Alumno_Asignatura" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Asignatura_Docente_Asignatura" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Asignatura_Escuela" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_secion_Asignatura" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Asignatura_Docente_Docentes" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Carrera_Escuela" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Pregunta_Categoria_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Cuestionario_Periodo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Cuestionario_Tipo_Cuestionario" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Detalle_Evaluacion_Evaluacion" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Detalle_Evaluacion_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Docente_Evaluacion_Docentes" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Docente_Evaluacion_Evaluacion" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Docentes_Escuela" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Docentes_Periodo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_secion_Docentes" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Evaluacion_Periodo" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Evaluacion_Tipo_Evaluador" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Detalle_Pregunta_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Pregunta_Tipo_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Preguntas_Cuestionario_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SEDModel.FK_Directores_Escuelas_Escuela" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@model SED.Models.Cuestionario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Cuestionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Periodo.periodo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Periodo.periodo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Cuestionario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Cuestionario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_cuestionario }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

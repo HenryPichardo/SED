@@ -1,0 +1,58 @@
+﻿@model SED.Models.Directores_Escuelas
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Directores_Escuelas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo_universitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo_universitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escuela.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escuela.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_director }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

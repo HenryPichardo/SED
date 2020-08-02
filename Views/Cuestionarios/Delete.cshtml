@@ -1,0 +1,56 @@
+﻿@model SED.Models.Cuestionario
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que deseas eliminar esto?</h3>
+<div>
+    <h4>Cuestionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Periodo.periodo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Periodo.periodo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Cuestionario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Cuestionario.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
+        </div>
+    }
+</div>

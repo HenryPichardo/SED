@@ -1,0 +1,56 @@
+﻿@model SED.Models.Secion
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que quieres eliminar esto?</h3>
+<div>
+    <h4>Secion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.correo_universitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo_universitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alumnos.matricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alumnos.matricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asignatura.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asignatura.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Docentes.codigo_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Docentes.codigo_empleado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,34 @@
+﻿@model SED.Models.Docente_Evaluacion
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Docente_Evaluacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Docentes.codigo_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Docentes.codigo_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluacion.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluacion.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_docente_evaluacion }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

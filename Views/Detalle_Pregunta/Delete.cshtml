@@ -1,0 +1,32 @@
+﻿@model SED.Models.Detalle_Pregunta
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que deseas borrar esto?</h3>
+<div>
+    <h4>Detalle_Pregunta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pregunta.nombre_pregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pregunta.nombre_pregunta)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
+        </div>
+    }
+</div>

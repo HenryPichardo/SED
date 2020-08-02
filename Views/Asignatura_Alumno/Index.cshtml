@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SED.Models.Asignatura_Alumno>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Asignatura Alumno</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Alumnos.matricula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asignatura.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alumnos.matricula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asignatura.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_asignaturo_alumno }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_asignaturo_alumno }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id_asignaturo_alumno })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model SED.Models.Pregunta
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Pregunta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_pregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_pregunta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pregunta1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pregunta1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria_Pregunta.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria_Pregunta.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Pregunta.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Pregunta.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_pregunta }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

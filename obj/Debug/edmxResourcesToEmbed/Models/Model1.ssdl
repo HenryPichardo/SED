@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SEDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matricula" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fk_id_carrera" Type="int" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+    <Property Name="fk_id_tipoEvaluador" Type="int" Nullable="false" />
+    <Property Name="correo_universitario" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asignatura">
+    <Key>
+      <PropertyRef Name="id_asignatura" />
+    </Key>
+    <Property Name="id_asignatura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fk_id_escuela" Type="int" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asignatura_Alumno">
+    <Key>
+      <PropertyRef Name="id_asignaturo_alumno" />
+    </Key>
+    <Property Name="fk_id_asignatura" Type="int" Nullable="false" />
+    <Property Name="fk_id_alumno" Type="int" Nullable="false" />
+    <Property Name="id_asignaturo_alumno" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Asignatura_Docente">
+    <Key>
+      <PropertyRef Name="id_asignatura_docente" />
+    </Key>
+    <Property Name="id_asignatura_docente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_asignatura" Type="int" Nullable="false" />
+    <Property Name="fk_id_docente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carrera">
+    <Key>
+      <PropertyRef Name="id_carrera" />
+    </Key>
+    <Property Name="id_carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fk_id_escuela" Type="int" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categoria_Pregunta">
+    <Key>
+      <PropertyRef Name="id_categoria_pregunta" />
+    </Key>
+    <Property Name="id_categoria_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cuestionario">
+    <Key>
+      <PropertyRef Name="id_cuestionario" />
+    </Key>
+    <Property Name="id_cuestionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_periodo" Type="int" Nullable="false" />
+    <Property Name="fk_id_tipo_cuestionario" Type="int" Nullable="false" />
+    <Property Name="cantidad_categoria" Type="int" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detalle_Evaluacion">
+    <Key>
+      <PropertyRef Name="id_detalle_evaluacion" />
+    </Key>
+    <Property Name="id_detalle_evaluacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_evaluacion" Type="int" Nullable="false" />
+    <Property Name="fk_id_pregunta" Type="int" Nullable="false" />
+    <Property Name="fk_id_respuesta" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SED.dbo.Detalle_Pregunta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Detalle_Pregunta">
+    <Key>
+      <PropertyRef Name="fk_id_pregunta" />
+      <PropertyRef Name="opcion" />
+    </Key>
+    <Property Name="fk_id_pregunta" Type="int" Nullable="false" />
+    <Property Name="opcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Directores_Escuelas">
+    <Key>
+      <PropertyRef Name="id_director" />
+    </Key>
+    <Property Name="id_director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo_empleado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="correo_universitario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fk_id_escuela" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Docente_Evaluacion">
+    <Key>
+      <PropertyRef Name="id_docente_evaluacion" />
+    </Key>
+    <Property Name="fk_id_docente" Type="int" Nullable="false" />
+    <Property Name="fk_id_evaluacion" Type="int" Nullable="false" />
+    <Property Name="id_docente_evaluacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Docentes">
+    <Key>
+      <PropertyRef Name="id_docente" />
+    </Key>
+    <Property Name="id_docente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo_empleado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="fk_id_periodo" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fk_id_escuela" Type="int" Nullable="false" />
+    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="correo_universitario" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Escuela">
+    <Key>
+      <PropertyRef Name="id_escuela" />
+    </Key>
+    <Property Name="id_escuela" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Evaluacion">
+    <Key>
+      <PropertyRef Name="id_evaluacion" />
+    </Key>
+    <Property Name="id_evaluacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_tipo_evaluador" Type="int" Nullable="false" />
+    <Property Name="fk_id_periodo" Type="int" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="fk_id_tipo_cuestionario" Type="int" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Periodo">
+    <Key>
+      <PropertyRef Name="id_periodo" />
+    </Key>
+    <Property Name="id_periodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_periodo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nota" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+    <Property Name="fecha_cierre" Type="datetime" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pregunta">
+    <Key>
+      <PropertyRef Name="id_pregunta" />
+    </Key>
+    <Property Name="id_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_categoria_pregunta" Type="int" Nullable="false" />
+    <Property Name="fk_id_tipo_pregunta" Type="int" Nullable="false" />
+    <Property Name="nombre_pregunta" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pregunta" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Preguntas_Cuestionario">
+    <Key>
+      <PropertyRef Name="id_cuestionario" />
+    </Key>
+    <Property Name="id_cuestionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_pregunta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Respuestas">
+    <Key>
+      <PropertyRef Name="id_respuesta" />
+    </Key>
+    <Property Name="id_respuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Secion">
+    <Key>
+      <PropertyRef Name="id_secion" />
+    </Key>
+    <Property Name="id_secion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fk_id_docente" Type="int" Nullable="false" />
+    <Property Name="fk_id_alumno" Type="int" Nullable="false" />
+    <Property Name="fk_id_asignatura" Type="int" Nullable="false" />
+    <Property Name="correo_universitario" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tipo_Cuestionario">
+    <Key>
+      <PropertyRef Name="id_tipo_cuestionario" />
+    </Key>
+    <Property Name="id_tipo_cuestionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Evaluador">
+    <Key>
+      <PropertyRef Name="id_tipo_evaluador" />
+    </Key>
+    <Property Name="id_tipo_evaluador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Pregunta">
+    <Key>
+      <PropertyRef Name="id_tipo_pregunta" />
+    </Key>
+    <Property Name="id_tipo_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Alumnos_Carrera">
+    <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera">
+        <PropertyRef Name="id_carrera" />
+      </Principal>
+      <Dependent Role="Alumnos">
+        <PropertyRef Name="fk_id_carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alumnos_Tipo_Evaluador">
+    <End Role="Tipo_Evaluador" Type="Self.Tipo_Evaluador" Multiplicity="1" />
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Evaluador">
+        <PropertyRef Name="id_tipo_evaluador" />
+      </Principal>
+      <Dependent Role="Alumnos">
+        <PropertyRef Name="fk_id_tipoEvaluador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Alumno_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="Asignatura_Alumno" Type="Self.Asignatura_Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Asignatura_Alumno">
+        <PropertyRef Name="fk_id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Alumno_Asignatura">
+    <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="1" />
+    <End Role="Asignatura_Alumno" Type="Self.Asignatura_Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asignatura">
+        <PropertyRef Name="id_asignatura" />
+      </Principal>
+      <Dependent Role="Asignatura_Alumno">
+        <PropertyRef Name="fk_id_asignatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Docente_Asignatura">
+    <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="1" />
+    <End Role="Asignatura_Docente" Type="Self.Asignatura_Docente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asignatura">
+        <PropertyRef Name="id_asignatura" />
+      </Principal>
+      <Dependent Role="Asignatura_Docente">
+        <PropertyRef Name="fk_id_asignatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Docente_Docentes">
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="1" />
+    <End Role="Asignatura_Docente" Type="Self.Asignatura_Docente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docentes">
+        <PropertyRef Name="id_docente" />
+      </Principal>
+      <Dependent Role="Asignatura_Docente">
+        <PropertyRef Name="fk_id_docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Asignatura_Escuela">
+    <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+    <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escuela">
+        <PropertyRef Name="id_escuela" />
+      </Principal>
+      <Dependent Role="Asignatura">
+        <PropertyRef Name="fk_id_escuela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carrera_Escuela">
+    <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+    <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escuela">
+        <PropertyRef Name="id_escuela" />
+      </Principal>
+      <Dependent Role="Carrera">
+        <PropertyRef Name="fk_id_escuela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuestionario_Periodo">
+    <End Role="Periodo" Type="Self.Periodo" Multiplicity="1" />
+    <End Role="Cuestionario" Type="Self.Cuestionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Periodo">
+        <PropertyRef Name="id_periodo" />
+      </Principal>
+      <Dependent Role="Cuestionario">
+        <PropertyRef Name="fk_id_periodo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cuestionario_Tipo_Cuestionario">
+    <End Role="Tipo_Cuestionario" Type="Self.Tipo_Cuestionario" Multiplicity="1" />
+    <End Role="Cuestionario" Type="Self.Cuestionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Cuestionario">
+        <PropertyRef Name="id_tipo_cuestionario" />
+      </Principal>
+      <Dependent Role="Cuestionario">
+        <PropertyRef Name="fk_id_tipo_cuestionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Evaluacion_Evaluacion">
+    <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="1" />
+    <End Role="Detalle_Evaluacion" Type="Self.Detalle_Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluacion">
+        <PropertyRef Name="id_evaluacion" />
+      </Principal>
+      <Dependent Role="Detalle_Evaluacion">
+        <PropertyRef Name="fk_id_evaluacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Evaluacion_Pregunta">
+    <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+    <End Role="Detalle_Evaluacion" Type="Self.Detalle_Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregunta">
+        <PropertyRef Name="id_pregunta" />
+      </Principal>
+      <Dependent Role="Detalle_Evaluacion">
+        <PropertyRef Name="fk_id_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Pregunta_Pregunta">
+    <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+    <End Role="Detalle_Pregunta" Type="Self.Detalle_Pregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregunta">
+        <PropertyRef Name="id_pregunta" />
+      </Principal>
+      <Dependent Role="Detalle_Pregunta">
+        <PropertyRef Name="fk_id_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Directores_Escuelas_Escuela">
+    <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+    <End Role="Directores_Escuelas" Type="Self.Directores_Escuelas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escuela">
+        <PropertyRef Name="id_escuela" />
+      </Principal>
+      <Dependent Role="Directores_Escuelas">
+        <PropertyRef Name="fk_id_escuela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docente_Evaluacion_Docentes">
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="1" />
+    <End Role="Docente_Evaluacion" Type="Self.Docente_Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docentes">
+        <PropertyRef Name="id_docente" />
+      </Principal>
+      <Dependent Role="Docente_Evaluacion">
+        <PropertyRef Name="fk_id_docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docente_Evaluacion_Evaluacion">
+    <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="1" />
+    <End Role="Docente_Evaluacion" Type="Self.Docente_Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluacion">
+        <PropertyRef Name="id_evaluacion" />
+      </Principal>
+      <Dependent Role="Docente_Evaluacion">
+        <PropertyRef Name="fk_id_evaluacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docentes_Escuela">
+    <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escuela">
+        <PropertyRef Name="id_escuela" />
+      </Principal>
+      <Dependent Role="Docentes">
+        <PropertyRef Name="fk_id_escuela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docentes_Escuela1">
+    <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escuela">
+        <PropertyRef Name="id_escuela" />
+      </Principal>
+      <Dependent Role="Docentes">
+        <PropertyRef Name="fk_id_escuela" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Docentes_Periodo">
+    <End Role="Periodo" Type="Self.Periodo" Multiplicity="1" />
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Periodo">
+        <PropertyRef Name="id_periodo" />
+      </Principal>
+      <Dependent Role="Docentes">
+        <PropertyRef Name="fk_id_periodo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Evaluacion_Periodo">
+    <End Role="Periodo" Type="Self.Periodo" Multiplicity="1" />
+    <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Periodo">
+        <PropertyRef Name="id_periodo" />
+      </Principal>
+      <Dependent Role="Evaluacion">
+        <PropertyRef Name="fk_id_periodo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Evaluacion_Tipo_Evaluador">
+    <End Role="Tipo_Evaluador" Type="Self.Tipo_Evaluador" Multiplicity="1" />
+    <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Evaluador">
+        <PropertyRef Name="id_tipo_evaluador" />
+      </Principal>
+      <Dependent Role="Evaluacion">
+        <PropertyRef Name="fk_id_tipo_evaluador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pregunta_Categoria_Pregunta">
+    <End Role="Categoria_Pregunta" Type="Self.Categoria_Pregunta" Multiplicity="1" />
+    <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria_Pregunta">
+        <PropertyRef Name="id_categoria_pregunta" />
+      </Principal>
+      <Dependent Role="Pregunta">
+        <PropertyRef Name="fk_id_categoria_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pregunta_Tipo_Pregunta">
+    <End Role="Tipo_Pregunta" Type="Self.Tipo_Pregunta" Multiplicity="1" />
+    <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Pregunta">
+        <PropertyRef Name="id_tipo_pregunta" />
+      </Principal>
+      <Dependent Role="Pregunta">
+        <PropertyRef Name="fk_id_tipo_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preguntas_Cuestionario_Pregunta">
+    <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+    <End Role="Preguntas_Cuestionario" Type="Self.Preguntas_Cuestionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pregunta">
+        <PropertyRef Name="id_pregunta" />
+      </Principal>
+      <Dependent Role="Preguntas_Cuestionario">
+        <PropertyRef Name="fk_id_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secion_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="Secion" Type="Self.Secion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="Secion">
+        <PropertyRef Name="fk_id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secion_Asignatura">
+    <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="1" />
+    <End Role="Secion" Type="Self.Secion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asignatura">
+        <PropertyRef Name="id_asignatura" />
+      </Principal>
+      <Dependent Role="Secion">
+        <PropertyRef Name="fk_id_asignatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_secion_Docentes">
+    <End Role="Docentes" Type="Self.Docentes" Multiplicity="1" />
+    <End Role="Secion" Type="Self.Secion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Docentes">
+        <PropertyRef Name="id_docente" />
+      </Principal>
+      <Dependent Role="Secion">
+        <PropertyRef Name="fk_id_docente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SEDModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignatura" EntityType="Self.Asignatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignatura_Alumno" EntityType="Self.Asignatura_Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignatura_Docente" EntityType="Self.Asignatura_Docente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria_Pregunta" EntityType="Self.Categoria_Pregunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cuestionario" EntityType="Self.Cuestionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Evaluacion" EntityType="Self.Detalle_Evaluacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directores_Escuelas" EntityType="Self.Directores_Escuelas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Docente_Evaluacion" EntityType="Self.Docente_Evaluacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Docentes" EntityType="Self.Docentes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Escuela" EntityType="Self.Escuela" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Evaluacion" EntityType="Self.Evaluacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Periodo" EntityType="Self.Periodo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Preguntas_Cuestionario" EntityType="Self.Preguntas_Cuestionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Respuestas" EntityType="Self.Respuestas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Secion" EntityType="Self.Secion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Cuestionario" EntityType="Self.Tipo_Cuestionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Evaluador" EntityType="Self.Tipo_Evaluador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Pregunta" EntityType="Self.Tipo_Pregunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Pregunta" EntityType="Self.Detalle_Pregunta" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Detalle_Pregunta].[fk_id_pregunta] AS [fk_id_pregunta], 
+    [Detalle_Pregunta].[opcion] AS [opcion]
+    FROM [dbo].[Detalle_Pregunta] AS [Detalle_Pregunta]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Alumnos_Carrera" Association="Self.FK_Alumnos_Carrera">
+      <End Role="Carrera" EntitySet="Carrera" />
+      <End Role="Alumnos" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alumnos_Tipo_Evaluador" Association="Self.FK_Alumnos_Tipo_Evaluador">
+      <End Role="Tipo_Evaluador" EntitySet="Tipo_Evaluador" />
+      <End Role="Alumnos" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Alumno_Alumnos" Association="Self.FK_Asignatura_Alumno_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Asignatura_Alumno" EntitySet="Asignatura_Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Alumno_Asignatura" Association="Self.FK_Asignatura_Alumno_Asignatura">
+      <End Role="Asignatura" EntitySet="Asignatura" />
+      <End Role="Asignatura_Alumno" EntitySet="Asignatura_Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Docente_Asignatura" Association="Self.FK_Asignatura_Docente_Asignatura">
+      <End Role="Asignatura" EntitySet="Asignatura" />
+      <End Role="Asignatura_Docente" EntitySet="Asignatura_Docente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Docente_Docentes" Association="Self.FK_Asignatura_Docente_Docentes">
+      <End Role="Docentes" EntitySet="Docentes" />
+      <End Role="Asignatura_Docente" EntitySet="Asignatura_Docente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Asignatura_Escuela" Association="Self.FK_Asignatura_Escuela">
+      <End Role="Escuela" EntitySet="Escuela" />
+      <End Role="Asignatura" EntitySet="Asignatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carrera_Escuela" Association="Self.FK_Carrera_Escuela">
+      <End Role="Escuela" EntitySet="Escuela" />
+      <End Role="Carrera" EntitySet="Carrera" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuestionario_Periodo" Association="Self.FK_Cuestionario_Periodo">
+      <End Role="Periodo" EntitySet="Periodo" />
+      <End Role="Cuestionario" EntitySet="Cuestionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cuestionario_Tipo_Cuestionario" Association="Self.FK_Cuestionario_Tipo_Cuestionario">
+      <End Role="Tipo_Cuestionario" EntitySet="Tipo_Cuestionario" />
+      <End Role="Cuestionario" EntitySet="Cuestionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Evaluacion_Evaluacion" Association="Self.FK_Detalle_Evaluacion_Evaluacion">
+      <End Role="Evaluacion" EntitySet="Evaluacion" />
+      <End Role="Detalle_Evaluacion" EntitySet="Detalle_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Evaluacion_Pregunta" Association="Self.FK_Detalle_Evaluacion_Pregunta">
+      <End Role="Pregunta" EntitySet="Pregunta" />
+      <End Role="Detalle_Evaluacion" EntitySet="Detalle_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Pregunta_Pregunta" Association="Self.FK_Detalle_Pregunta_Pregunta">
+      <End Role="Pregunta" EntitySet="Pregunta" />
+      <End Role="Detalle_Pregunta" EntitySet="Detalle_Pregunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Directores_Escuelas_Escuela" Association="Self.FK_Directores_Escuelas_Escuela">
+      <End Role="Escuela" EntitySet="Escuela" />
+      <End Role="Directores_Escuelas" EntitySet="Directores_Escuelas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docente_Evaluacion_Docentes" Association="Self.FK_Docente_Evaluacion_Docentes">
+      <End Role="Docentes" EntitySet="Docentes" />
+      <End Role="Docente_Evaluacion" EntitySet="Docente_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docente_Evaluacion_Evaluacion" Association="Self.FK_Docente_Evaluacion_Evaluacion">
+      <End Role="Evaluacion" EntitySet="Evaluacion" />
+      <End Role="Docente_Evaluacion" EntitySet="Docente_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docentes_Escuela" Association="Self.FK_Docentes_Escuela">
+      <End Role="Escuela" EntitySet="Escuela" />
+      <End Role="Docentes" EntitySet="Docentes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docentes_Escuela1" Association="Self.FK_Docentes_Escuela1">
+      <End Role="Escuela" EntitySet="Escuela" />
+      <End Role="Docentes" EntitySet="Docentes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Docentes_Periodo" Association="Self.FK_Docentes_Periodo">
+      <End Role="Periodo" EntitySet="Periodo" />
+      <End Role="Docentes" EntitySet="Docentes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Evaluacion_Periodo" Association="Self.FK_Evaluacion_Periodo">
+      <End Role="Periodo" EntitySet="Periodo" />
+      <End Role="Evaluacion" EntitySet="Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Evaluacion_Tipo_Evaluador" Association="Self.FK_Evaluacion_Tipo_Evaluador">
+      <End Role="Tipo_Evaluador" EntitySet="Tipo_Evaluador" />
+      <End Role="Evaluacion" EntitySet="Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pregunta_Categoria_Pregunta" Association="Self.FK_Pregunta_Categoria_Pregunta">
+      <End Role="Categoria_Pregunta" EntitySet="Categoria_Pregunta" />
+      <End Role="Pregunta" EntitySet="Pregunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pregunta_Tipo_Pregunta" Association="Self.FK_Pregunta_Tipo_Pregunta">
+      <End Role="Tipo_Pregunta" EntitySet="Tipo_Pregunta" />
+      <End Role="Pregunta" EntitySet="Pregunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Preguntas_Cuestionario_Pregunta" Association="Self.FK_Preguntas_Cuestionario_Pregunta">
+      <End Role="Pregunta" EntitySet="Pregunta" />
+      <End Role="Preguntas_Cuestionario" EntitySet="Preguntas_Cuestionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secion_Alumnos" Association="Self.FK_secion_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Secion" EntitySet="Secion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secion_Asignatura" Association="Self.FK_secion_Asignatura">
+      <End Role="Asignatura" EntitySet="Asignatura" />
+      <End Role="Secion" EntitySet="Secion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_secion_Docentes" Association="Self.FK_secion_Docentes">
+      <End Role="Docentes" EntitySet="Docentes" />
+      <End Role="Secion" EntitySet="Secion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

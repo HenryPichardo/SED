@@ -1,0 +1,26 @@
+﻿@model SED.Models.Detalle_Pregunta
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Detalle_Pregunta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pregunta.nombre_pregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pregunta.nombre_pregunta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

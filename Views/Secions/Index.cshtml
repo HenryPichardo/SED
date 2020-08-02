@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SED.Models.Secion>
+
+@{
+    ViewBag.Title = "Secion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Secion</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.correo_universitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Alumnos.matricula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asignatura.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Docentes.codigo_empleado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo_universitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alumnos.matricula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asignatura.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Docentes.codigo_empleado)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_secion }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_secion }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.id_secion })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model SED.Models.Docente_Evaluacion
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que deseas eliminar esto?</h3>
+<div>
+    <h4>Docente_Evaluacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Docentes.codigo_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Docentes.codigo_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluacion.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluacion.estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al listado", "Index")
+        </div>
+    }
+</div>
